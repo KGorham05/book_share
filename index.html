@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Online Bookshelf</title>
+  <link rel="icon" href="assets/images/favicon.png">
+</head>
+
+<body>
+  <div id="navbar-container" class="container">
+    <nav id="navbar" class="navbar navbar-expand rounded-lg">
+      <a id="username-display" data-toggle="modal" data-target="#username-modal" class="navbar-brand"
+        href="#">USERNAME</a>
+
+      <div class="collapse navbar-collapse" id="button-div">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a id="scan-barcode" data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">SCAN
+              BARCODE<span id="scan-barcode" class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a id="type-entry-button" data-toggle="modal" data-target="#typed-entry-modal" class="nav-link"
+              href="#">TYPE ENTRY</a>
+          </li>
+          <li class="nav-item">
+            <a id="delete-entry-button" class="nav-link" href="#">DELETE ENTRY</a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  </div>
+
+  <div class="container rounded-lg" id="table-container">
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th id="title-header" class="sortable" scope=“col”>Title</th>
+          <th id="author-header" class="sortable" scope=“col”>Author</th>
+          <th id="genre-header" class="sortable" scope=“col”>Genre</th>
+          <th id="date-header" class="sortable" scope=“col”>Date</th>
+          <th id="pages-header" class="sortable" scope=“col”>Pages</th>
+          <th id="isbn-header" class="sortable" scope=“col”>ISBN</th>
+          <th id="snippet-header" scope=“col”>Snippet</th>
+          <th id="delete-header" scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="table-data">
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Typed Entry Modal -->
+  <div class="modal fade" id="typed-entry-modal" tabindex="-1" role="dialog" aria-labelledby="typed-entry-modal-label"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="typed-entry-modal-label">Enter ISBN or Title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="ISBN-entry">Enter ISBN: </label>
+          <input type="text" id="ISBN-entry" name="ISBN-entry">
+          <button id="ISBN-entry-submit" type="button" class="btn btn-primary">Search</button>
+          <br>
+          <br>
+          <label for="title-entry">Enter Title: </label>
+          <input type="text" id="title-entry" name="title-entry">
+          <button id="title-entry-submit" type="button" class="btn btn-primary">Search</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <video id="video" style="width:100%;height:100%;" playsinline="true"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Username Modal -->
+  <div id="username-modal" class="modal" tabindex="-2" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Enter Username</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="username-text">Username: </label>
+          <input type="text" id="username-input" name="username-input">
+          <button id="username-submit" type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" data-auto-replace-svg="nest"></script>
+  <script src="dbr-6.4.1.3.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="assets/javascript/sort.js"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>
